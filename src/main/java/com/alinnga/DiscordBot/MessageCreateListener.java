@@ -7,6 +7,10 @@ import reactor.core.publisher.Mono;
 @Service
 public class MessageCreateListener extends MessageListener implements EventListener<MessageCreateEvent> {
 
+    protected MessageCreateListener(TenorService tenorService) {
+        super(tenorService);
+    }
+
     @Override
     public Class<MessageCreateEvent> getEventType() {
         return MessageCreateEvent.class;
