@@ -28,13 +28,13 @@ public abstract class MessageListener {
                 .filter(message -> message.getAuthor().map(user -> !user.isBot()).orElse(false))
                 .flatMap(message -> {
                     String result = "";
-                    String content = message.getContent();
-                    if(content.equalsIgnoreCase("@спецназ")){
+                    String content = message.getContent().toLowerCase();
+                    if(content.equals("@спецназ")){
                         int gifId = ThreadLocalRandom.current().nextInt(gifs.length);
                         result = gifs[gifId];
                     }
                     else if(content.matches("random\s*.+")){
-                        result = tenorService.getRandomGif(content.replaceFirst("random", ""));
+                        result = tenorService.getRandomGif(content.replaceFirst("random\s*", ""));
                     }
                     String finalResult = result;
                     if(!finalResult.isBlank()){
