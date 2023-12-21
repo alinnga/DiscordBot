@@ -33,8 +33,8 @@ public abstract class MessageListener {
                         int gifId = ThreadLocalRandom.current().nextInt(gifs.length);
                         result = gifs[gifId];
                     }
-                    else if(content.matches("random\s*.+")){
-                        result = tenorService.getRandomGif(content.replaceFirst("random\s*", ""));
+                    else if(content.matches("random\s*.+") || content.matches("рандом\s*.+")){
+                        result = tenorService.getRandomGif(content.replaceFirst("random\s*", "").replaceFirst("рандом\s*", ""));
                     }
                     String finalResult = result;
                     if(!finalResult.isBlank()){
